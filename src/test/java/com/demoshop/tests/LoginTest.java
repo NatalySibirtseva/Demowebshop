@@ -1,5 +1,6 @@
 package com.demoshop.tests;
 
+import com.demoshop.models.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -7,18 +8,18 @@ public class LoginTest extends TestBase{
 
     @Test
     public void loginPositiveTest(){
-        clickOnLoginLink();
-        fillLoginForm(new User().setEmail("n1ln2@gm.com").setPassword("123123"));
-        clickOnLoginButton();
-        Assert.assertTrue(isLinkLogOutPresent());
+        app.getUser().clickOnLoginLink();
+        app.getUser().fillLoginForm(new User().setEmail("n1ln2@gm.com").setPassword("123123"));
+        app.getUser().clickOnLoginButton();
+        Assert.assertTrue(app.getUser().isLinkLogOutPresent());
     }
 
     @Test
     public void loginNegativeWithoutEmailTest(){
-        clickOnLoginLink();
-        fillLoginForm(new User().setPassword("123123"));
-        clickOnLoginButton();
-        Assert.assertTrue(isTextValidationErrorsPresent());
+        app.getUser().clickOnLoginLink();
+        app.getUser().fillLoginForm(new User().setPassword("123123"));
+        app.getUser().clickOnLoginButton();
+        Assert.assertTrue(app.getUser().isTextValidationErrorsPresent());
     }
 
 }

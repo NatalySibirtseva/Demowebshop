@@ -1,4 +1,4 @@
-package com.demoshop.tests;
+package com.demoshop.models;
 
 public class User {
     private String fistName;
