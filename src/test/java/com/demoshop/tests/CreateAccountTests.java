@@ -1,6 +1,8 @@
 package com.demoshop.tests;
 
+import com.demoshop.data.UserData;
 import com.demoshop.models.User;
+import com.demoshop.utils.DataProviders;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,9 +18,19 @@ public class CreateAccountTests extends TestBase{
 
     @Test
     public void newUserRegistrationPositiveTest() {
-        int i = (int)((System.currentTimeMillis()/1000)%3600);
         app.getUser().clickOnRegistrationLink();
-        app.getUser().fillRegistrationForm(new User().setFistName("Name11").setLastName("LastName11").setEmail("n1ln2" + i + "@gm.com").setPassword("123123").setConfirmPassword("123123"));
+        app.getUser().fillRegistrationForm(new User().setFistName(UserData.FIRSTNAME).setLastName(UserData.LASTNAME).setEmail(UserData.NEWREGESTRATIONEMAIL).setPassword(UserData.PASSWORD).setConfirmPassword(UserData.CONFIRMPASSWORD));
+        app.getUser().clickOnRegistrationButton();
+        Assert.assertTrue(app.getUser().isLinkLogOutPresent());
+        Assert.assertTrue(app.getUser().isTextRegistrationCompletedPresent());
+    }
+
+
+
+    @Test(dataProvider = "addNewUserWithCsv", dataProviderClass = DataProviders.class)
+    public void newUserRegistrationPositiveFromDataProviderWithCsvFileTest(User user) {
+        app.getUser().clickOnRegistrationLink();
+        app.getUser().fillRegistrationForm(user);
         app.getUser().clickOnRegistrationButton();
         Assert.assertTrue(app.getUser().isLinkLogOutPresent());
         Assert.assertTrue(app.getUser().isTextRegistrationCompletedPresent());
@@ -27,7 +39,7 @@ public class CreateAccountTests extends TestBase{
     @Test
     public void existedUserRegistrationNegativeTest() {
         app.getUser().clickOnRegistrationLink();
-        app.getUser().fillRegistrationForm(new User().setFistName("Name11").setLastName("LastName11").setEmail("n1ln2@gm.com").setPassword("123123").setConfirmPassword("123123"));
+        app.getUser().fillRegistrationForm(new User().setFistName(UserData.FIRSTNAME).setLastName(UserData.LASTNAME).setEmail(UserData.EMAIL).setPassword(UserData.PASSWORD).setConfirmPassword(UserData.CONFIRMPASSWORD));
         app.getUser().clickOnRegistrationButton();
         Assert.assertTrue(app.getUser().isTextEmailExistsPresent());
     }

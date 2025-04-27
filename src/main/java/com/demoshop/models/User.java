@@ -51,4 +51,13 @@ public class User {
         this.confirmPassword = confirmPassword;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "lastName='" + lastName + '\'' +
+                ", fistName='" + fistName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
