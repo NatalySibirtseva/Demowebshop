@@ -11,6 +11,7 @@
             <class name="com.demoshop.tests.CreateAccountTests">
                 <methods>
                     <exclude name=".*Negative.*"/>
+                    <exclude name=".*From.*"/>
                 </methods>
             </class>
         </classes>
