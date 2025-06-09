@@ -10,8 +10,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.seleniumhq.selenium:selenium-java:+'
-    implementation 'org.testng:testng:+'
+    implementation 'org.seleniumhq.selenium:selenium-java:+' //+ last version
+    implementation 'org.testng:testng:+' //+ last version
     implementation 'ch.qos.logback:logback-classic:1.5.18'
 }
 
